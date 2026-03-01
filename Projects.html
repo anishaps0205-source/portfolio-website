@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anisha Shaji · projects & learning</title>
+    <!-- favicon -->
+    <link rel="icon" href="images/Unknown.jpeg">
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Google Font: Plus Jakarta Sans (warm, narrative) -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #f5efe7;
+            font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+            color: #1f2a36;
+            line-height: 1.6;
+            padding: 2rem 1.5rem;
+        }
+
+        .projects-card {
+            max-width: 1100px;
+            margin: 0 auto;
+            background: rgba(255, 252, 245, 0.95);
+            backdrop-filter: blur(2px);
+            border-radius: 3rem 3rem 2rem 2rem;
+            padding: 2.8rem 3rem;
+            box-shadow: 0 30px 45px -25px rgba(60, 40, 30, 0.25);
+            border: 1px solid #f0e3d4;
+        }
+
+        h1, h2, h3 {
+            font-weight: 600;
+            letter-spacing: -0.01em;
+        }
+
+        h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            background: linear-gradient(140deg, #3d5f7a, #8a6e8c);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 0.4rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        h1 img {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            object-fit: cover;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            font-size: 2rem;
+            margin: 2.2rem 0 1.2rem 0;
+            border-bottom: 2px solid #eedbcb;
+            padding-bottom: 0.6rem;
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+        }
+
+        h2 i {
+            color: #9b7f99;
+        }
+
+        /* navigation */
+        .nav-bar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem 1.8rem;
+            align-items: center;
+            margin: 1.5rem 0 1.2rem 0;
+            padding: 0.8rem 0;
+            border-top: 2px solid #efe0d1;
+            border-bottom: 2px solid #efe0d1;
+        }
+
+        .nav-bar a {
+            text-decoration: none;
+            color: #415a6b;
+            font-weight: 500;
+            font-size: 1.05rem;
+            transition: 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .nav-bar a i {
+            color: #a589a1;
+        }
+
+        .nav-bar a:hover {
+            color: #8a538b;
+        }
+
+        .separator {
+            color: #cbbeb0;
+        }
+
+        /* project cards — with learnings */
+        .project-block {
+            background: #fffbf5;
+            border-radius: 2.2rem;
+            padding: 1.8rem 2.2rem;
+            margin-bottom: 2rem;
+            border-left: 10px solid #b39f8e;  /* warm brown */
+            box-shadow: 0 10px 18px -12px rgba(70, 50, 40, 0.15);
+            transition: transform 0.2s;
+        }
+
+        .project-block:hover {
+            transform: scale(1.01);
+        }
+
+        .project-header {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: baseline;
+            gap: 0.8rem 1.5rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .project-name {
+            font-size: 1.8rem;
+            font-weight: 650;
+            color: #234256;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        .project-badge {
+            background: #eaded0;
+            padding: 0.3rem 1.2rem;
+            border-radius: 40px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #3e4f5e;
+        }
+
+        .project-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin: 0.5rem 0 1rem 0;
+            color: #6b5f53;
+        }
+
+        .project-meta i {
+            color: #9b7f99;
+            width: 1.4rem;
+        }
+
+        .learning-section {
+            background: #f8f1ea;
+            border-radius: 1.5rem;
+            padding: 1.2rem 1.8rem;
+            margin-top: 1.2rem;
+            border: 1px dashed #cfbba9;
+        }
+
+        .learning-section h4 {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #4a3b44;
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+        }
+
+        .learning-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+        }
+
+        .learning-tag {
+            background: white;
+            border: 1px solid #dccfc1;
+            padding: 0.4rem 1.3rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: #2c4556;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+        }
+
+        .learning-tag i {
+            color: #8a6e8c;
+            margin-right: 0.4rem;
+        }
+
+        /* footer */
+        .footer-links {
+            margin-top: 2.5rem;
+            border-top: 2px solid #eddacb;
+            padding-top: 1.2rem;
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.9rem;
+            color: #7f6b5e;
+            flex-wrap: wrap;
+        }
+
+        .back-home {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            background: #efe3d7;
+            padding: 0.4rem 1.5rem 0.4rem 1rem;
+            border-radius: 60px;
+            text-decoration: none;
+            color: #3a4d5e;
+            font-weight: 500;
+            margin-top: 1rem;
+        }
+
+        @media (max-width: 600px) {
+            .projects-card {
+                padding: 1.5rem;
+            }
+            h1 {
+                font-size: 2.3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="projects-card">
+        <!-- header with laptop image (preserved) -->
+        <h1>
+            my projects 
+            <img src="images/file.jpg" alt="Laptop workspace" width="50" height="50">
+        </h1>
+        <span style="background: #eaded0; padding: 0.2rem 1.2rem; border-radius: 40px; font-size: 0.8rem;">
+            <i class="fas fa-code-branch"></i> building · learning · growing
+        </span>
+
+        <!-- navigation (exact same links) -->
+        <div class="nav-bar">
+            <a href="index.html"><i class="fas fa-home"></i> Home</a>
+            <span class="separator">|</span>
+            <a href="Experience.html"><i class="fas fa-user-graduate"></i> Education & Work</a>
+            <span class="separator">|</span>
+            <a href="Projects.html"><i class="fas fa-code-branch"></i> Projects</a>
+            <span class="separator">|</span>
+            <a href="https://www.dal.ca/" target="_blank"><i class="fas fa-university"></i> Dalhousie University</a>
+            <span class="separator">|</span>
+            <a href="https://git.cs.dal.ca/ashaji" target="_blank"><i class="fab fa-gitlab"></i> GitLab</a>
+        </div>
+
+        <!-- intro: what this page is about -->
+        <p style="margin: 1.2rem 0 2rem 0; font-size: 1.1rem;">
+            <i class="fas fa-lightbulb" style="color: #b28bb0;"></i> 
+            each project taught me something new — here's what I learned along the way.
+        </p>
+
+        <!-- PROJECT 1: Escape Room Game -->
+        <div class="project-block">
+            <div class="project-header">
+                <span class="project-name"><i class="fas fa-door-open" style="color:#8a6e8c;"></i> Escape Room Game</span>
+                <span class="project-badge"><i class="far fa-calendar-alt"></i> 2025</span>
+            </div>
+            <div class="project-meta">
+                <span><i class="fab fa-java"></i> Java (console)</span>
+                <span><i class="fas fa-cubes"></i> rooms, keys, puzzles</span>
+            </div>
+            <p style="margin-bottom: 0.8rem;">A text-based adventure where the player navigates rooms, collects keys, and solves clues to escape.</p>
+            
+            <!-- what I learned -->
+            <div class="learning-section">
+                <h4><i class="fas fa-graduation-cap"></i> what I learned</h4>
+                <div class="learning-list">
+                    <span class="learning-tag"><i class="fas fa-code"></i> object-oriented design (classes for Room, Key, Player)</span>
+                    <span class="learning-tag"><i class="fas fa-random"></i> game loop & state management</span>
+                    <span class="learning-tag"><i class="fas fa-puzzle-piece"></i> basic puzzle logic</span>
+                    <span class="learning-tag"><i class="fas fa-git-alt"></i> version control with Git</span>
+                    <span class="learning-tag"><i class="fas fa-tasks"></i> debugging and testing edge cases</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- PROJECT 2: Board Game Simulation -->
+        <div class="project-block">
+            <div class="project-header">
+                <span class="project-name"><i class="fas fa-chess-board" style="color:#8a6e8c;"></i> Board Game Simulation</span>
+                <span class="project-badge"><i class="far fa-calendar-alt"></i> 2026</span>
+            </div>
+            <div class="project-meta">
+                <span><i class="fab fa-java"></i> Java (OOP)</span>
+                <span><i class="fas fa-users"></i> turn-based, piece movement</span>
+            </div>
+            <p style="margin-bottom: 0.8rem;">A simulation of a simple board game with pieces, turns, and movement rules — think simplified chess/checkers.</p>
+            
+            <div class="learning-section">
+                <h4><i class="fas fa-graduation-cap"></i> what I learned</h4>
+                <div class="learning-list">
+                    <span class="learning-tag"><i class="fas fa-chess-queen"></i> inheritance (base Piece class, subclasses)</span>
+                    <span class="learning-tag"><i class="fas fa-arrows-alt"></i> movement validation & game rules</span>
+                    <span class="learning-tag"><i class="fas fa-clipboard-list"></i> turn management and win conditions</span>
+                    <span class="learning-tag"><i class="fas fa-bug"></i> testing edge cases (invalid moves, game end)</span>
+                    <span class="learning-tag"><i class="fas fa-code-branch"></i> working with 2D arrays/grid</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- PROJECT 3: Portfolio Website (this one!) -->
+        <div class="project-block">
+            <div class="project-header">
+                <span class="project-name"><i class="fas fa-laptop-code" style="color:#8a6e8c;"></i> Portfolio Website</span>
+                <span class="project-badge"><i class="far fa-calendar-alt"></i> 2026</span>
+            </div>
+            <div class="project-meta">
+                <span><i class="fab fa-html5"></i> HTML/CSS</span>
+                <span><i class="fab fa-js"></i> JavaScript (soon)</span>
+                <span><i class="fas fa-pencil-ruler"></i> design & content</span>
+            </div>
+            <p style="margin-bottom: 0.8rem;">This very site — a personal portfolio to showcase my work, education, and projects.</p>
+            
+            <div class="learning-section">
+                <h4><i class="fas fa-graduation-cap"></i> what I learned</h4>
+                <div class="learning-list">
+                    <span class="learning-tag"><i class="fab fa-html5"></i> semantic HTML structure</span>
+                    <span class="learning-tag"><i class="fab fa-css3-alt"></i> modern CSS (flex, grid, cards, gradients)</span>
+                    <span class="learning-tag"><i class="fas fa-palette"></i> design thinking: typography, color, spacing</span>
+                    <span class="learning-tag"><i class="fas fa-mobile-alt"></i> making it responsive</span>
+                    <span class="learning-tag"><i class="fas fa-book-open"></i> telling my story through a site</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- EXTRA: what I'm learning in general (link to skills page) -->
+        <div style="background: #f3eae1; border-radius: 2rem; padding: 1.5rem 2rem; margin: 2.5rem 0 1rem;">
+            <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;">
+                <div>
+                    <h3 style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;"><i class="fas fa-seedling" style="color:#9b7f99;"></i> always learning</h3>
+                    <p style="max-width: 500px;">beyond these projects, I'm exploring data science (matplotlib, numpy), C++, and software testing.</p>
+                </div>
+                <a href="Experience.html" style="background: white; padding: 0.6rem 1.8rem; border-radius: 60px; text-decoration: none; color: #415a6b; font-weight: 500; border: 1px solid #dccfc1;"><i class="fas-regular fa-arrow-right"></i> see my full learning journey</a>
+            </div>
+        </div>
+
+        <!-- back to home & footer -->
+        <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; margin: 2rem 0 0.5rem;">
+            <a href="index.html" class="back-home"><i class="fas fa-arrow-left"></i> back to home</a>
+            <a href="Experience.html" style="color:#8f6f8c;">education & work <i class="fas fa-arrow-right"></i></a>
+        </div>
+
+        <div class="footer-links">
+            <span><i class="far fa-copyright"></i> Anisha Shaji – B01023247</span>
+            <span>
+                <a href="https://www.dal.ca/" target="_blank">Dalhousie</a> · 
+                <a href="https://git.cs.dal.ca/ashaji" target="_blank">GitLab</a> · 
+                <a href="https://linkedin.com/in/anisha-pathappamattathil-shaji-935a10181" target="_blank">LinkedIn</a>
+            </span>
+        </div>
+    </div>
+</body>
+</html>
