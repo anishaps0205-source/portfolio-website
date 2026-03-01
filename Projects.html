@@ -8,8 +8,8 @@
     <link rel="icon" href="images/Unknown.jpeg">
     <!-- Font Awesome 6 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <!-- Google Font: Plus Jakarta Sans (warm, narrative) -->
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Google Font: Inter (matching index) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -18,80 +18,161 @@
         }
 
         body {
-            background-color: #f5efe7;
-            font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
-            color: #1f2a36;
+            background-color: #0a0c0f;
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            color: #e3d9cd;
             line-height: 1.6;
             padding: 2rem 1.5rem;
+            position: relative;
+            min-height: 100vh;
+            overflow-x: hidden;
         }
 
-        .projects-card {
+        /* ===== WIND-BLOWN BINARY (copied from index) ===== */
+        .binary-wind {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 100;
+            overflow: hidden;
+        }
+
+        .wind-particle {
+            position: absolute;
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+            color: rgba(80, 220, 255, 0.5);
+            text-shadow: 0 0 8px cyan, 0 0 18px #0066ff;
+            font-size: 1.6rem;
+            user-select: none;
+            white-space: nowrap;
+            opacity: 0;
+            animation: diagonalWind linear infinite;
+            mix-blend-mode: screen;
+            z-index: 101;
+        }
+
+        @keyframes diagonalWind {
+            0% {
+                transform: translate(-10%, -10%) rotate(2deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.9;
+            }
+            90% {
+                opacity: 0.8;
+            }
+            100% {
+                transform: translate(110vw, 110vh) rotate(8deg);
+                opacity: 0;
+            }
+        }
+
+        .wind-particle.alt-direction {
+            animation: diagonalWindAlt linear infinite;
+        }
+
+        @keyframes diagonalWindAlt {
+            0% {
+                transform: translate(110%, -10%) rotate(-3deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.8;
+            }
+            100% {
+                transform: translate(-20vw, 110vh) rotate(-10deg);
+                opacity: 0;
+            }
+        }
+
+        /* main card */
+        .portfolio-card {
+            position: relative;
+            z-index: 10;
             max-width: 1100px;
             margin: 0 auto;
-            background: rgba(255, 252, 245, 0.95);
-            backdrop-filter: blur(2px);
-            border-radius: 3rem 3rem 2rem 2rem;
-            padding: 2.8rem 3rem;
-            box-shadow: 0 30px 45px -25px rgba(60, 40, 30, 0.25);
-            border: 1px solid #f0e3d4;
+            background: rgba(20, 22, 27, 0.85);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border-radius: 2.5rem;
+            padding: 2.5rem 3rem;
+            box-shadow: 0 25px 45px -10px rgba(0, 20, 40, 0.7);
+            border: 1px solid rgba(80, 140, 200, 0.4);
         }
 
-        h1, h2, h3 {
-            font-weight: 600;
-            letter-spacing: -0.01em;
+        /* header with cartoon character */
+        .header-with-character {
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+            flex-wrap: wrap;
+            margin-bottom: 0.2rem;
+        }
+
+        .cartoon-character {
+            font-size: 4rem;
+            line-height: 1;
+            filter: drop-shadow(0 0 10px #80a0ff);
+            animation: bounce 2s infinite ease-in-out;
+            display: inline-block;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
         }
 
         h1 {
-            font-size: 3rem;
+            font-size: 3.2rem;
             font-weight: 700;
-            background: linear-gradient(140deg, #3d5f7a, #8a6e8c);
+            background: linear-gradient(145deg, #aaccff, #d4b0ff);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
-            margin-bottom: 0.4rem;
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            flex-wrap: wrap;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.6);
+            margin: 0;
         }
 
-        h1 img {
-            width: 50px;
-            height: 50px;
-            border-radius: 12px;
-            object-fit: cover;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        /* text readability */
+        h2, h3, p, li, a, span {
+            position: relative;
+            z-index: 11;
+            text-shadow: 0 2px 6px rgba(0,0,0,0.8);
         }
 
         h2 {
             font-size: 2rem;
-            margin: 2.2rem 0 1.2rem 0;
-            border-bottom: 2px solid #eedbcb;
-            padding-bottom: 0.6rem;
-            display: flex;
-            align-items: center;
-            gap: 0.7rem;
+            margin: 2rem 0 1rem 0;
+            border-bottom: 2px solid #2e3a48;
+            padding-bottom: 0.5rem;
+            color: #d6c9bb;
         }
 
-        h2 i {
-            color: #9b7f99;
+        h3 {
+            font-size: 1.4rem;
+            margin: 1.8rem 0 0.8rem 0;
+            color: #cfc1b2;
         }
 
-        /* navigation */
         .nav-bar {
             display: flex;
             flex-wrap: wrap;
             gap: 0.5rem 1.8rem;
             align-items: center;
             margin: 1.5rem 0 1.2rem 0;
-            padding: 0.8rem 0;
-            border-top: 2px solid #efe0d1;
-            border-bottom: 2px solid #efe0d1;
+            padding: 0.75rem 0;
+            border-top: 1px solid #2e3a48;
+            border-bottom: 1px solid #2e3a48;
         }
 
         .nav-bar a {
             text-decoration: none;
-            color: #415a6b;
+            color: #b9cfef;
             font-weight: 500;
             font-size: 1.05rem;
             transition: 0.2s;
@@ -101,30 +182,68 @@
         }
 
         .nav-bar a i {
-            color: #a589a1;
+            color: #8f9fbb;
         }
 
         .nav-bar a:hover {
-            color: #8a538b;
+            color: #b0e0ff;
+            text-shadow: 0 0 5px #2f6f9f;
         }
 
         .separator {
-            color: #cbbeb0;
+            color: #3e4d5e;
         }
 
-        /* project cards — with learnings */
+        .contact-strip {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem 2.5rem;
+            background: #1a1f28;
+            padding: 1rem 2rem;
+            border-radius: 60px;
+            margin: 1.5rem 0 2rem 0;
+            align-items: center;
+            font-size: 0.98rem;
+            border: 1px solid #31465a;
+        }
+
+        .contact-strip a, .contact-strip span {
+            text-decoration: none;
+            color: #cfdbed;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .contact-strip i {
+            color: #83a6d1;
+        }
+
+        .badge {
+            background: #1d3142;
+            border-radius: 40px;
+            padding: 0.2rem 1.2rem;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #bfd2e6;
+            display: inline-block;
+        }
+
+        /* Project cards - dark theme version */
         .project-block {
-            background: #fffbf5;
-            border-radius: 2.2rem;
+            background: #1a222e;
+            border-radius: 2rem;
             padding: 1.8rem 2.2rem;
             margin-bottom: 2rem;
-            border-left: 10px solid #b39f8e;  /* warm brown */
-            box-shadow: 0 10px 18px -12px rgba(70, 50, 40, 0.15);
+            border-left: 6px solid #4f789b;
+            border: 1px solid #31465a;
+            box-shadow: 0 10px 20px -10px rgba(0,0,0,0.5);
             transition: transform 0.2s;
         }
 
         .project-block:hover {
-            transform: scale(1.01);
+            transform: translateY(-4px);
+            border-color: #80b0da;
         }
 
         .project-header {
@@ -138,19 +257,23 @@
         .project-name {
             font-size: 1.8rem;
             font-weight: 650;
-            color: #234256;
+            color: #b9cfef;
             display: flex;
             align-items: center;
             gap: 0.6rem;
         }
 
+        .project-name i {
+            color: #83a6d1;
+        }
+
         .project-badge {
-            background: #eaded0;
+            background: #1d3142;
             padding: 0.3rem 1.2rem;
             border-radius: 40px;
             font-size: 0.8rem;
             font-weight: 600;
-            color: #3e4f5e;
+            color: #bfd2e6;
         }
 
         .project-meta {
@@ -158,27 +281,27 @@
             flex-wrap: wrap;
             gap: 1.5rem;
             margin: 0.5rem 0 1rem 0;
-            color: #6b5f53;
+            color: #a0b2c4;
         }
 
         .project-meta i {
-            color: #9b7f99;
+            color: #83a6d1;
             width: 1.4rem;
         }
 
         .learning-section {
-            background: #f8f1ea;
+            background: #1f2631;
             border-radius: 1.5rem;
             padding: 1.2rem 1.8rem;
             margin-top: 1.2rem;
-            border: 1px dashed #cfbba9;
+            border: 1px solid #35485b;
         }
 
         .learning-section h4 {
             display: flex;
             align-items: center;
             gap: 0.5rem;
-            color: #4a3b44;
+            color: #b9cfef;
             font-weight: 600;
             margin-bottom: 0.8rem;
         }
@@ -190,48 +313,85 @@
         }
 
         .learning-tag {
-            background: white;
-            border: 1px solid #dccfc1;
+            background: #1d3142;
+            border: 1px solid #4f789b;
             padding: 0.4rem 1.3rem;
             border-radius: 50px;
             font-size: 0.9rem;
             font-weight: 500;
-            color: #2c4556;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+            color: #cfdbed;
         }
 
         .learning-tag i {
-            color: #8a6e8c;
+            color: #83a6d1;
             margin-right: 0.4rem;
         }
 
-        /* footer */
+        .resume-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            background: #1f3b4f;
+            border: 1px solid #4f789b;
+            padding: 0.8rem 2rem;
+            border-radius: 60px;
+            font-weight: 600;
+            text-decoration: none;
+            color: #f0eadc;
+            transition: 0.2s;
+            box-shadow: 0 4px 10px rgba(0,30,50,0.5);
+            margin: 1rem 0;
+            position: relative;
+            z-index: 12;
+        }
+
+        .resume-btn:hover {
+            background: #234b66;
+            border-color: #80b0da;
+            transform: translateY(-2px);
+        }
+
         .footer-links {
             margin-top: 2.5rem;
-            border-top: 2px solid #eddacb;
+            border-top: 1px solid #2d3f4f;
             padding-top: 1.2rem;
             display: flex;
             justify-content: space-between;
             font-size: 0.9rem;
-            color: #7f6b5e;
+            color: #8899aa;
             flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: #afc5dd;
+            text-decoration: none;
+        }
+
+        .footer-links a:hover {
+            color: #dbeafe;
         }
 
         .back-home {
             display: inline-flex;
             align-items: center;
             gap: 0.4rem;
-            background: #efe3d7;
+            background: #1f2631;
             padding: 0.4rem 1.5rem 0.4rem 1rem;
             border-radius: 60px;
             text-decoration: none;
-            color: #3a4d5e;
+            color: #b9cfef;
             font-weight: 500;
             margin-top: 1rem;
+            border: 1px solid #31465a;
+        }
+
+        .back-home:hover {
+            background: #2a3341;
+            border-color: #4f789b;
         }
 
         @media (max-width: 600px) {
-            .projects-card {
+            .portfolio-card {
                 padding: 1.5rem;
             }
             h1 {
@@ -241,17 +401,21 @@
     </style>
 </head>
 <body>
-    <div class="projects-card">
-        <!-- header with laptop image (preserved) -->
-        <h1>
-            my projects 
-            <img src="images/file.jpg" alt="Laptop workspace" width="50" height="50">
-        </h1>
-        <span style="background: #eaded0; padding: 0.2rem 1.2rem; border-radius: 40px; font-size: 0.8rem;">
-            <i class="fas fa-code-branch"></i> building · learning · growing
-        </span>
 
-        <!-- navigation (exact same links) -->
+    <!-- ===== WIND-BLOWN BINARY (copied from index) ===== -->
+    <div class="binary-wind" id="binaryWind"></div>
+
+    <div class="portfolio-card">
+        <!-- header with cartoon character -->
+        <div class="header-with-character">
+            <span class="cartoon-character">👩‍💻</span>
+            <h1>my projects</h1>
+        </div>
+        <div class="badge" style="display: inline-block; margin-left: 5rem;">
+            <i class="fas fa-code-branch"></i> building · learning · growing
+        </div>
+
+        <!-- navigation (exact same as index) -->
         <div class="nav-bar">
             <a href="index.html"><i class="fas fa-home"></i> Home</a>
             <span class="separator">|</span>
@@ -259,38 +423,51 @@
             <span class="separator">|</span>
             <a href="Projects.html"><i class="fas fa-code-branch"></i> Projects</a>
             <span class="separator">|</span>
-            <a href="https://www.dal.ca/" target="_blank"><i class="fas fa-university"></i> Dalhousie University</a>
+            <a href="https://www.dal.ca/" target="_blank"><i class="fas fa-university"></i> Dalhousie</a>
             <span class="separator">|</span>
             <a href="https://git.cs.dal.ca/ashaji" target="_blank"><i class="fab fa-gitlab"></i> GitLab</a>
         </div>
 
-        <!-- intro: what this page is about -->
-        <p style="margin: 1.2rem 0 2rem 0; font-size: 1.1rem;">
-            <i class="fas fa-lightbulb" style="color: #b28bb0;"></i> 
+        <!-- contact strip (matching index) -->
+        <div class="contact-strip">
+            <span><i class="fas fa-map-pin"></i> Halifax, NS</span>
+            <span><i class="fas fa-phone-alt"></i> (289) 889-1671</span>
+            <span><i class="fas fa-envelope"></i> anishaps0205@gmail.com</span>
+            <a href="https://linkedin.com/in/anisha-pathappamattathil-shaji-935a10181" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
+        </div>
+
+        <!-- RESUME BUTTON (same as index) -->
+        <a href="#" class="resume-btn" onclick="alert('📄 Resume download would go here. Replace with your PDF.'); return false;">
+            <i class="fas fa-file-pdf"></i> Download resume (PDF)
+        </a>
+
+        <!-- intro -->
+        <p style="margin: 1.2rem 0 2rem 0; font-size: 1.1rem; color: #cfdbed;">
+            <i class="fas fa-lightbulb" style="color: #83a6d1;"></i> 
             each project taught me something new — here's what I learned along the way.
         </p>
 
         <!-- PROJECT 1: Escape Room Game -->
         <div class="project-block">
             <div class="project-header">
-                <span class="project-name"><i class="fas fa-door-open" style="color:#8a6e8c;"></i> Escape Room Game</span>
+                <span class="project-name"><i class="fas fa-door-open"></i> Escape Room Game</span>
                 <span class="project-badge"><i class="far fa-calendar-alt"></i> 2025</span>
             </div>
             <div class="project-meta">
                 <span><i class="fab fa-java"></i> Java (console)</span>
                 <span><i class="fas fa-cubes"></i> rooms, keys, puzzles</span>
             </div>
-            <p style="margin-bottom: 0.8rem;">A text-based adventure where the player navigates rooms, collects keys, and solves clues to escape.</p>
+            <p style="margin-bottom: 0.8rem; color: #cfdbed;">A text-based adventure where the player navigates rooms, collects keys, and solves clues to escape.</p>
             
             <!-- what I learned -->
             <div class="learning-section">
                 <h4><i class="fas fa-graduation-cap"></i> what I learned</h4>
                 <div class="learning-list">
-                    <span class="learning-tag"><i class="fas fa-code"></i> object-oriented design (classes for Room, Key, Player)</span>
-                    <span class="learning-tag"><i class="fas fa-random"></i> game loop & state management</span>
-                    <span class="learning-tag"><i class="fas fa-puzzle-piece"></i> basic puzzle logic</span>
-                    <span class="learning-tag"><i class="fas fa-git-alt"></i> version control with Git</span>
-                    <span class="learning-tag"><i class="fas fa-tasks"></i> debugging and testing edge cases</span>
+                    <span class="learning-tag"><i class="fas fa-code"></i> object-oriented design</span>
+                    <span class="learning-tag"><i class="fas fa-random"></i> game loop & state</span>
+                    <span class="learning-tag"><i class="fas fa-puzzle-piece"></i> puzzle logic</span>
+                    <span class="learning-tag"><i class="fas fa-git-alt"></i> version control</span>
+                    <span class="learning-tag"><i class="fas fa-tasks"></i> debugging</span>
                 </div>
             </div>
         </div>
@@ -298,67 +475,69 @@
         <!-- PROJECT 2: Board Game Simulation -->
         <div class="project-block">
             <div class="project-header">
-                <span class="project-name"><i class="fas fa-chess-board" style="color:#8a6e8c;"></i> Board Game Simulation</span>
+                <span class="project-name"><i class="fas fa-chess-board"></i> Board Game Simulation</span>
                 <span class="project-badge"><i class="far fa-calendar-alt"></i> 2026</span>
             </div>
             <div class="project-meta">
                 <span><i class="fab fa-java"></i> Java (OOP)</span>
                 <span><i class="fas fa-users"></i> turn-based, piece movement</span>
             </div>
-            <p style="margin-bottom: 0.8rem;">A simulation of a simple board game with pieces, turns, and movement rules — think simplified chess/checkers.</p>
+            <p style="margin-bottom: 0.8rem; color: #cfdbed;">A simulation of a simple board game with pieces, turns, and movement rules.</p>
             
             <div class="learning-section">
                 <h4><i class="fas fa-graduation-cap"></i> what I learned</h4>
                 <div class="learning-list">
-                    <span class="learning-tag"><i class="fas fa-chess-queen"></i> inheritance (base Piece class, subclasses)</span>
-                    <span class="learning-tag"><i class="fas fa-arrows-alt"></i> movement validation & game rules</span>
-                    <span class="learning-tag"><i class="fas fa-clipboard-list"></i> turn management and win conditions</span>
-                    <span class="learning-tag"><i class="fas fa-bug"></i> testing edge cases (invalid moves, game end)</span>
-                    <span class="learning-tag"><i class="fas fa-code-branch"></i> working with 2D arrays/grid</span>
+                    <span class="learning-tag"><i class="fas fa-chess-queen"></i> inheritance</span>
+                    <span class="learning-tag"><i class="fas fa-arrows-alt"></i> movement validation</span>
+                    <span class="learning-tag"><i class="fas fa-clipboard-list"></i> turn management</span>
+                    <span class="learning-tag"><i class="fas fa-bug"></i> testing edge cases</span>
+                    <span class="learning-tag"><i class="fas fa-code-branch"></i> 2D arrays/grid</span>
                 </div>
             </div>
         </div>
 
-        <!-- PROJECT 3: Portfolio Website (this one!) -->
+        <!-- PROJECT 3: Portfolio Website -->
         <div class="project-block">
             <div class="project-header">
-                <span class="project-name"><i class="fas fa-laptop-code" style="color:#8a6e8c;"></i> Portfolio Website</span>
+                <span class="project-name"><i class="fas fa-laptop-code"></i> Portfolio Website</span>
                 <span class="project-badge"><i class="far fa-calendar-alt"></i> 2026</span>
             </div>
             <div class="project-meta">
                 <span><i class="fab fa-html5"></i> HTML/CSS</span>
-                <span><i class="fab fa-js"></i> JavaScript (soon)</span>
+                <span><i class="fab fa-js"></i> JavaScript</span>
                 <span><i class="fas fa-pencil-ruler"></i> design & content</span>
             </div>
-            <p style="margin-bottom: 0.8rem;">This very site — a personal portfolio to showcase my work, education, and projects.</p>
+            <p style="margin-bottom: 0.8rem; color: #cfdbed;">This very site — a personal portfolio to showcase my work, education, and projects.</p>
             
             <div class="learning-section">
                 <h4><i class="fas fa-graduation-cap"></i> what I learned</h4>
                 <div class="learning-list">
-                    <span class="learning-tag"><i class="fab fa-html5"></i> semantic HTML structure</span>
-                    <span class="learning-tag"><i class="fab fa-css3-alt"></i> modern CSS (flex, grid, cards, gradients)</span>
-                    <span class="learning-tag"><i class="fas fa-palette"></i> design thinking: typography, color, spacing</span>
-                    <span class="learning-tag"><i class="fas fa-mobile-alt"></i> making it responsive</span>
-                    <span class="learning-tag"><i class="fas fa-book-open"></i> telling my story through a site</span>
+                    <span class="learning-tag"><i class="fab fa-html5"></i> semantic HTML</span>
+                    <span class="learning-tag"><i class="fab fa-css3-alt"></i> modern CSS</span>
+                    <span class="learning-tag"><i class="fas fa-palette"></i> design thinking</span>
+                    <span class="learning-tag"><i class="fas fa-mobile-alt"></i> responsive design</span>
+                    <span class="learning-tag"><i class="fas fa-book-open"></i> telling my story</span>
                 </div>
             </div>
         </div>
 
-        <!-- EXTRA: what I'm learning in general (link to skills page) -->
-        <div style="background: #f3eae1; border-radius: 2rem; padding: 1.5rem 2rem; margin: 2.5rem 0 1rem;">
+        <!-- what I'm learning in general -->
+        <div style="background: #1a222e; border-radius: 2rem; padding: 1.5rem 2rem; margin: 2.5rem 0 1rem; border: 1px solid #31465a;">
             <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;">
                 <div>
-                    <h3 style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;"><i class="fas fa-seedling" style="color:#9b7f99;"></i> always learning</h3>
-                    <p style="max-width: 500px;">beyond these projects, I'm exploring data science (matplotlib, numpy), C++, and software testing.</p>
+                    <h3 style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem; color: #b9cfef;">
+                        <i class="fas fa-seedling" style="color:#83a6d1;"></i> always learning
+                    </h3>
+                    <p style="max-width: 500px; color: #cfdbed;">exploring data science, C++, and software testing.</p>
                 </div>
-                <a href="Experience.html" style="background: white; padding: 0.6rem 1.8rem; border-radius: 60px; text-decoration: none; color: #415a6b; font-weight: 500; border: 1px solid #dccfc1;"><i class="fas-regular fa-arrow-right"></i> see my full learning journey</a>
+                <a href="Experience.html" style="background: #1f3b4f; padding: 0.6rem 1.8rem; border-radius: 60px; text-decoration: none; color: #cfdbed; font-weight: 500; border: 1px solid #4f789b;">see my learning journey →</a>
             </div>
         </div>
 
         <!-- back to home & footer -->
         <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; margin: 2rem 0 0.5rem;">
             <a href="index.html" class="back-home"><i class="fas fa-arrow-left"></i> back to home</a>
-            <a href="Experience.html" style="color:#8f6f8c;">education & work <i class="fas fa-arrow-right"></i></a>
+            <a href="Experience.html" style="color:#83a6d1;">education & work <i class="fas fa-arrow-right"></i></a>
         </div>
 
         <div class="footer-links">
@@ -370,5 +549,50 @@
             </span>
         </div>
     </div>
+
+    <!-- JavaScript for binary animation (copied from index) -->
+    <script>
+        (function() {
+            const windContainer = document.getElementById('binaryWind');
+            const chars = ['1', '0', '1', '0', '1', '0', '1', '0', '1', '0'];
+            
+            function createWindParticle() {
+                const span = document.createElement('span');
+                span.className = 'wind-particle';
+                
+                if (Math.random() < 0.3) {
+                    span.classList.add('alt-direction');
+                }
+                
+                span.textContent = chars[Math.floor(Math.random() * chars.length)];
+                span.style.left = Math.random() * 100 + '%';
+                span.style.top = Math.random() * 100 + '%';
+                
+                const size = 0.8 + Math.random() * 1.7;
+                span.style.fontSize = size + 'rem';
+                
+                const duration = 7 + Math.random() * 15;
+                span.style.animationDuration = duration + 's';
+                
+                span.style.animationDelay = (Math.random() * 8) + 's';
+                
+                const blue = 180 + Math.floor(Math.random() * 75);
+                const green = 180 + Math.floor(Math.random() * 60);
+                span.style.color = `rgba(70, ${green}, ${blue}, 0.45)`;
+                
+                windContainer.appendChild(span);
+                
+                setTimeout(() => {
+                    if (span.parentNode) span.remove();
+                }, duration * 1000 + 2000);
+            }
+            
+            for (let i = 0; i < 40; i++) {
+                setTimeout(createWindParticle, i * 100);
+            }
+            
+            setInterval(createWindParticle, 350);
+        })();
+    </script>
 </body>
 </html>
